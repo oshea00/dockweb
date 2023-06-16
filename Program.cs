@@ -1,7 +1,31 @@
-var builder = WebApplication.CreateBuilder(args);
+using Serilog;
 
-var app = builder.Build();
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
 
-app.MapGet("/", () => "Hello World!");
+try 
+{
+    Log.Information("Starting dockweb.");
 
-app.Run();
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog();
+    
+    var app = builder.Build();
+
+    app.MapGet("/", () => "Hello World!");
+
+    app.Run();
+
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex,"Terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+
+}
+
