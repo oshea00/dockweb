@@ -1,6 +1,7 @@
 namespace dockweb;
 
-public static class DataRepo {
+public static class DataRepo
+{
     readonly static List<Book> Books = new()
     {
         new Book
@@ -103,7 +104,7 @@ public static class DataRepo {
 
     public static IEnumerable<Book> GetBooks()
     {
-        return Books.OrderBy(b=>b.Title);
+        return Books.OrderBy(b => b.Title);
     }
 
 }

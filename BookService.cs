@@ -35,17 +35,14 @@ namespace dockweb
                     .Any(b=>b.Title.CompareTo(startCursor)<0);
             }
 
-
             var pageInfo = new ConnectionPageInfo(hasNextPage, hasPreviousPage, startCursor, lastCursor);
 
             return new Connection<Book>(edges, pageInfo);
-
         }
 
         public Book? GetBook(string title)
         {
             return DataRepo.GetBooks().SingleOrDefault(b => b.Title.Equals(title, StringComparison.InvariantCultureIgnoreCase));
         }
-
     }
 }
