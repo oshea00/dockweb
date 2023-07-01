@@ -10,19 +10,33 @@ namespace dockweb
 
     public class BookService : IBookService
     {
+        readonly int _defaultItemsPerPage = 5;
+
         public Connection<Book> GetBooks(string? after, int? take)
         {
-            var cursor = string.IsNullOrEmpty(after) ? "" : after;
+            var startCursor = string.IsNullOrEmpty(after) ? "" : after;
             var edges = DataRepo.GetBooks()
-                .Where(book => book.Title.CompareTo(cursor) > 0)
-                .Select(book => new Edge<Book>(book, book.Title))
-                .OrderBy(edge => edge.Cursor)
-                .Take(take ?? 1)
+                .Where(book => book.Title.CompareTo(startCursor) > 0)
+                .Select(book => new Edge<Book>(node: book, cursor: book.Title))
+                .Take(take ?? _defaultItemsPerPage)
                 .ToList();
 
-            var hasNextPage = edges.Count > 0;
             var lastCursor = edges.Count > 0 ? edges.Last().Cursor : null;
-            var pageInfo = new ConnectionPageInfo(hasNextPage, false, cursor, lastCursor);
+
+            var hasNextPage = false;
+            if (!string.IsNullOrEmpty(lastCursor)) {
+                hasNextPage = DataRepo.GetBooks()
+                    .Any(b=>b.Title.CompareTo(lastCursor)>0);
+            }
+
+            var hasPreviousPage = false;
+            if (!string.IsNullOrEmpty(startCursor)) {
+                hasPreviousPage = DataRepo.GetBooks()
+                    .Any(b=>b.Title.CompareTo(startCursor)<0);
+            }
+
+
+            var pageInfo = new ConnectionPageInfo(hasNextPage, hasPreviousPage, startCursor, lastCursor);
 
             return new Connection<Book>(edges, pageInfo);
 

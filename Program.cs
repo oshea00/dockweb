@@ -15,9 +15,6 @@ try
 
     builder.Services
         .AddGraphQLServer()
-        .SetPagingOptions(new PagingOptions {
-            DefaultPageSize = 1,
-        })
         .AddQueryType<dockweb.Query>();
 
     builder.Host.UseSerilog();
