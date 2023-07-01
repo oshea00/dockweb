@@ -14,7 +14,8 @@ try
 
     builder.Services
         .AddGraphQLServer()
-        .AddQueryType<dockweb.Query>();
+        .AddQueryType<dockweb.Query>()
+        .AddTypeExtension<dockweb.BooksConnectionExtension>();
 
     builder.Host.UseSerilog();
     var app = builder.Build();

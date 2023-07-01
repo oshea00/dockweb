@@ -1,4 +1,4 @@
-# Barebones Dockerized ASP.Net
+# Dockerized ASP.Net w/ GraphQL
 
 Publish to local source directory used by Dockerfile:
 ```
