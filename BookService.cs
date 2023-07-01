@@ -10,7 +10,7 @@ namespace dockweb
 
     public class BookService : IBookService
     {
-        readonly int _defaultItemsPerPage = 5;
+        public static readonly int MaxItemsPerPage = 10;
 
         public Connection<Book> GetBooks(string? after, int? take)
         {
@@ -18,7 +18,7 @@ namespace dockweb
             var edges = DataRepo.GetBooks()
                 .Where(book => book.Title.CompareTo(startCursor) > 0)
                 .Select(book => new Edge<Book>(node: book, cursor: book.Title))
-                .Take(take ?? _defaultItemsPerPage)
+                .Take(take ?? MaxItemsPerPage)
                 .ToList();
 
             var lastCursor = edges.Count > 0 ? edges.Last().Cursor : null;

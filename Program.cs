@@ -1,3 +1,4 @@
+using HotChocolate.Types.Pagination;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -14,6 +15,9 @@ try
 
     builder.Services
         .AddGraphQLServer()
+        .SetPagingOptions(new PagingOptions{
+            MaxPageSize = dockweb.BookService.MaxItemsPerPage
+        })
         .AddQueryType<dockweb.Query>()
         .AddTypeExtension<dockweb.BooksConnectionExtension>();
 
