@@ -1,4 +1,3 @@
-using HotChocolate.Types.Pagination;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
