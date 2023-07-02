@@ -1,3 +1,4 @@
+using HotChocolate.Authorization;
 using HotChocolate.Types.Pagination;
 
 namespace dockweb;
@@ -10,4 +11,5 @@ public class Query
 
     public Book? GetBook([Service] IBookService bookService, string title) =>
         bookService.GetBook(title);
+
 }

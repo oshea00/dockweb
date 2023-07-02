@@ -9,7 +9,8 @@ public static class DataRepo
             Title = "C# In Depth.",
             Author = new Author
             {
-                Name = "Jon Skeet"
+                Name = "Jon Skeet",
+                Address = "Reading, UK"
             }
         },
         new Book
@@ -17,7 +18,8 @@ public static class DataRepo
             Title = "C# For Dummies",
             Author = new Author
             {
-                Name = "James Ritchie"
+                Name = "James Ritchie",
+                Address = "Unknown"
             }
         },
         new Book
@@ -25,7 +27,8 @@ public static class DataRepo
             Title = "Mountain Climbing For Dummies",
             Author = new Author
             {
-                Name = "Jim Kirk"
+                Name = "Jim Kirk",
+                Address = "USS Enterprise"
             }
         },
         new Book
@@ -33,7 +36,8 @@ public static class DataRepo
             Title = "Tell the Machine Goodnight: A Novel",
             Author = new Author
             {
-                Name = "Katie Williams"
+                Name = "Katie Williams",
+                Address = "Boston, MA"
             }
         },
         new Book
@@ -41,7 +45,8 @@ public static class DataRepo
             Title = "What is ChatGPT Doing?",
             Author = new Author
             {
-                Name = "Stephen Wolfram"
+                Name = "Stephen Wolfram",
+                Address = "London"
             }
         },
         new Book
@@ -89,7 +94,8 @@ public static class DataRepo
             Title = "Dune",
             Author = new Author
             {
-                Name = "Frank Herbert"
+                Name = "Frank Herbert",
+                Address = "Heaven"
             }
         },
         new Book
@@ -97,7 +103,8 @@ public static class DataRepo
             Title = "A Universe from Nothing",
             Author = new Author
             {
-                Name = "Lawrence Krauss"
+                Name = "Lawrence Krauss",
+                Address = "New York, NY"
             }
         },
     };
