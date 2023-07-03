@@ -11,5 +11,4 @@ public class Query
 
     public Book? GetBook([Service] IBookService bookService, string title) =>
         bookService.GetBook(title);
-
 }

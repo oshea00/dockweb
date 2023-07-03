@@ -1,0 +1,43 @@
+query bookCompare(
+  $bookCount: Int,
+  $afterBook: String,
+  $authorCount: Int, 
+  $withAddress: Boolean!,
+  $leftTitle: String!,
+  $rightTitle: String!
+) {
+  books(first: $bookCount, after: $afterBook) {
+     nodes {
+      title
+     }
+     pageInfo {
+       endCursor
+     }
+  }
+  leftCompare: book(title: $leftTitle) {
+    ...compareFields
+  }
+  rightCompare: book(title: $rightTitle) {
+    ...compareFields
+  }
+}
+
+fragment compareFields on Book {
+  title
+  authors(first: $authorCount) {
+     nodes {
+       name
+       address @include(if: $withAddress)
+     }
+  }
+}
+
+Variables:
+{
+  "bookCount": 3,
+  "afterBook": "A",
+  "authorCount": 2,
+  "withAddress": true,
+  "leftTitle": "Surely You're Joking, Mr. Feynman!",
+  "rightTitle": "Tell the Machine Goodnight: A Novel"
+}

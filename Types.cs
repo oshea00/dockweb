@@ -7,8 +7,8 @@ namespace dockweb;
 public class Book
 {
     public string Title { get; set; } = default!;
-
-    public Author Author { get; set; } = default!;
+    [UsePaging]
+    public IEnumerable<Author> Authors { get; set; } = default!;
 }
 
 public class Author
