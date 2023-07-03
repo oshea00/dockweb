@@ -55,7 +55,7 @@ try
 
     app.MapGraphQL();
 
-    app.Run();
+    app.RunWithGraphQLCommands(args);
 }
 catch (Exception ex)
 {
