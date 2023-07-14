@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" Version="13.3.3" />
     <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.2.1" />
-   <PackageReference Include="HotChocolate.Types.Json" Version="13.3.3" />
+    <PackageReference Include="HotChocolate.Types.Json" Version="13.3.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
     <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
