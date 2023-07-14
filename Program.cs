@@ -1,17 +1,23 @@
 using HotChocolate.Types.Pagination;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
 
+//TODO - This
+
 try
 {
     Log.Information("Starting dockweb.");
 
     var builder = WebApplication.CreateBuilder(args);
+
+    builder.Services
+        .AddHttpClient("rest", c=>c.BaseAddress = new Uri("http://localhost:8080"));
 
     builder.Services.AddScoped<dockweb.IBookService,dockweb.BookService>();
 
@@ -34,7 +40,16 @@ try
             MaxPageSize = dockweb.BookService.MaxItemsPerPage
         })
         .AddQueryType<dockweb.Query>()
-        .AddTypeExtension<dockweb.BooksConnectionExtension>();
+        .AddTypeExtension<dockweb.BooksConnectionExtension>()
+        .AddTypeExtension<dockweb.BookExtensions>()
+        .AddJsonSupport()
+        .AddDocumentFromString(@"
+            type Publisher {
+                title: String @fromJson
+                name: String @fromJson
+                datePublished: String @fromJson
+            }
+        ");
 
     builder.Services.AddAuthentication(options =>{
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

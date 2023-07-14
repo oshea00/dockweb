@@ -6,7 +6,7 @@ public static class DataRepo
     {
         new Book
         {
-            Title = "C# In Depth.",
+            Title = "C# In Depth",
             Authors = new List<Author> {
             new Author
             {
@@ -128,9 +128,9 @@ public static class DataRepo
         },
     };
 
-    public static IEnumerable<Book> GetBooks()
+    public static IAsyncEnumerable<Book> GetBooks()
     {
-        return Books.OrderBy(b => b.Title);
+        return Books.OrderBy(b => b.Title).ToAsyncEnumerable();
     }
 
 }

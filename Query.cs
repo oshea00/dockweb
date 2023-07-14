@@ -6,9 +6,9 @@ namespace dockweb;
 public class Query
 {
     [UsePaging]
-    public Connection<Book> GetBooks([Service] IBookService bookService, string? after, int? first) =>
-        bookService.GetBooks(after,first);
+    public async Task<Connection<Book>> GetBooks([Service] IBookService bookService, string? after, int? first) => 
+        await bookService.GetBooks(after,first);
 
-    public Book? GetBook([Service] IBookService bookService, string title) =>
-        bookService.GetBook(title);
+    public async Task<Book?> GetBook([Service] IBookService bookService, string title) =>
+        await bookService.GetBook(title);
 }
