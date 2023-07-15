@@ -36,3 +36,6 @@ def get_bookByTitle(title):
 def add_published():
     books.append(request.get_json())
     return '', 204
+
+if __name__ == "__main__":
+    app.run()

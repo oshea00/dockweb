@@ -9,10 +9,15 @@ query bookCompare(
   books(first: $bookCount, after: $afterBook) {
      nodes {
       title
+      publisher {
+        name
+        datePublished
+      }
      }
      pageInfo {
        endCursor
      }
+     pageLength
   }
   leftCompare: book(title: $leftTitle) {
     ...compareFields
@@ -32,6 +37,18 @@ fragment compareFields on Book {
   }
 }
 
+query getbook {
+  book(title: "Surely You're Joking, Mr. Feynman!") {
+     title
+     authors {
+       nodes {
+         name
+       }
+     }
+    
+  }
+}
+ 
 Variables:
 {
   "bookCount": 3,

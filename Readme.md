@@ -9,11 +9,12 @@ Highlights
 * Using Paging.
 * Using a service/repo pattern for a custom data source.
 
+Upcoming
+* Dataloader to batch REST API calls
+* Filtering
+
 ## Running
 * F5 to build/debug (or use ```dotnet watch --no-hot-reload```)
-
-
-
 
 ## Docker using the Docker extension
 Publish to local "publish" directory
